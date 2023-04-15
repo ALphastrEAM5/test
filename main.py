@@ -13,7 +13,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # mydatabase connection
 local_server=True
-app=Flask(__name__)
+app=Flask(__name__, template_folder='static/templates')
 app.secret_key="dbms-project"
 
 
@@ -171,7 +171,7 @@ def login():
           if user and check_password_hash(user.dob,dob):
                login_user(user)
                flash("Login Success","info")
-               return render_template("static/templates/index.html")
+               return render_template("index.html")
           
           else:
                flash("Invalid Credentials", "danger")
