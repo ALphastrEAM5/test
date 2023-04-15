@@ -1,6 +1,8 @@
+
 package main
 
 import (
+	"net/http"
 	"encoding/json"
 	"net/smtp"
 	"os"
@@ -57,19 +59,6 @@ type BookingPatient struct {
 	PAddress string
 }
 
-func main() {
-	app := gin.Default()
-	app.Use(dbMiddleware())
-	app.Use(gin.Logger())
-
-	app.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hello World!",
-		})
-	})
-
-	app.Run(":8080")
-}
 
 func dbMiddleware() gin.HandlerFunc {
 	db, err := gorm.Open("mysql", "root:root@tcp(127.0.0.1:3306)/covid?charset=utf8&parseTime=True&loc=Local")
