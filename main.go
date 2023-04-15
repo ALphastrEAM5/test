@@ -3,11 +3,49 @@ package main
 import (
     "fmt"
     "net/http"
-    "encoding/json"
-    "net/smtp"
-    "os"
 
 )
+
+type Config struct {
+	GmailUser     string `json:"gmail-user"`
+	GmailPassword string `json:"gmail-password"`
+}
+
+type User struct {
+	ID    uint   `gorm:"primary_key"`
+	SRFID string `gorm:"unique"`
+	Email string `gorm:"unique"`
+	DOB   string
+}
+
+type HospitalUser struct {
+	ID       uint   `gorm:"primary_key"`
+	HCode    string `gorm:"unique"`
+	Email    string `gorm:"unique"`
+	Password string
+}
+
+type HospitalData struct {
+	ID        uint   `gorm:"primary_key"`
+	HCode     string `gorm:"unique"`
+	HName     string
+	NormalBed int
+	HICUBed   int
+	ICUBed    int
+	VBed      int
+}
+
+type BookingPatient struct {
+	ID       uint   `gorm:"primary_key"`
+	SRFID    string `gorm:"unique"`
+	BedType  string
+	HCode    int
+	SpO2     int
+	PName    string
+	PPhone   string
+	PAddress string
+}
+
 
 func main() {
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
