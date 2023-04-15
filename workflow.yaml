@@ -1,7 +1,7 @@
 version: 0
 application:
   version: 3.9.9 # (optional)
-  language: go
+  language: python
   ports:
   - port: 3000
     ingress: true
