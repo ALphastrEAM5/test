@@ -1,0 +1,11 @@
+version: 0
+application:
+  version: 3.9.9 # (optional)
+  language: go
+  ports:
+  - port: 3000
+    ingress: true
+    ingressPath: /
+pre-exec:
+  commands:  
+  - cmd: date # Print the deploy date
