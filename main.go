@@ -10,8 +10,7 @@ func main() {
         fmt.Fprintf(w, "Hello, World!")
     })
 
-    // Set GIN_MODE environment variable to "debug"
-    os.Setenv("GIN_MODE", "debug")
+
 
     http.ListenAndServe(":8080", nil)
 }
