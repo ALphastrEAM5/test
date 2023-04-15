@@ -3,7 +3,7 @@ application:
   version: 3.9.9 # (optional)
   language: python
   ports:
-  - port: 3000
+  - port: 8080
     ingress: true
     ingressPath: /
 pre-exec:
