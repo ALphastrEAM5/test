@@ -46,6 +46,20 @@ type BookingPatient struct {
 	PAddress string
 }
 
+func dbMiddleware() gin.HandlerFunc {
+	db, err := gorm.Open("mysql", "root:root@tcp(127.0.0.1:3306)/covid?charset=utf8&parseTime=True&loc=Local")
+	if err != nil {
+		panic("failed to connect database")
+	}
+
+	db.AutoMigrate(&User{}, &HospitalUser{}, &HospitalData{}, &BookingPatient{})
+
+	return func(c *gin.Context) {
+		c.Set("db", db)
+		c.Next()
+		db.Close()
+	}
+}
 
 func main() {
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
