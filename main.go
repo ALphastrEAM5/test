@@ -19,7 +19,7 @@ func main() {
 }
 
 func HelloServer(w http.ResponseWriter, r *http.Request) {
-	f, err := os.Open("./bootstrap.html")
+	f, err := os.Open("./index.html")
 	if err != nil {
 		panic(err)
 	}
